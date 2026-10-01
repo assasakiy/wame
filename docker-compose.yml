@@ -1,0 +1,45 @@
+services:
+  wame-app:
+    build: .
+    container_name: wame-app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://wame:${POSTGRES_PASSWORD:-wame}@postgres:5432/wame
+      REDIS_URL: redis://redis:6379
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    ports:
+      - "${PORT:-3000}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: wame-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wame
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-wame}
+      POSTGRES_DB: wame
+    volumes:
+      - wame-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wame -d wame"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Reserved for a BullMQ-backed queue and distributed rate limiting (see README → Scaling).
+  redis:
+    image: redis:7-alpine
+    container_name: wame-redis
+    restart: unless-stopped
+    volumes:
+      - wame-redis:/data
+
+volumes:
+  wame-pg:
+  wame-redis:
