@@ -20,3 +20,7 @@ export function timeAgo(value: Date | string | null | undefined): string {
 }
 
 export const limitLabel = (n: number) => (n >= 1_000_000 ? "Unlimited" : formatNumber(n));
+
+/** Returns the number of calendar days remaining, rounded up for an expiry banner. */
+export const daysUntil = (value: Date | string) =>
+  Math.ceil((new Date(value).getTime() - Date.now()) / 86_400_000);

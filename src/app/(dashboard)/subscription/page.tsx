@@ -3,7 +3,7 @@ import { Alert } from "@/shared/components/Alert";
 import { Card } from "@/shared/components/Card";
 import { PageHeader } from "@/shared/components/PageHeader";
 import { UsageMeter } from "@/shared/components/UsageMeter";
-import { formatDate } from "@/shared/utils/format";
+import { daysUntil, formatDate } from "@/shared/utils/format";
 import { PlanSelector } from "@/features/subscription/components/PlanSelector";
 import { requirePagePermission } from "@/modules/auth/presentation/guards";
 import { getUsage } from "@/modules/subscription/application/limits";
@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export default async function SubscriptionPage() {
   const user = await requirePagePermission("billing.view");
   const [sub, plans, usage] = await Promise.all([getSubscription(user.tenantId), listPlans(), getUsage(user.tenantId)]);
-  const daysLeft = sub.currentPeriodEnd ? Math.ceil((sub.currentPeriodEnd.getTime() - Date.now()) / 86_400_000) : null;
+  const daysLeft = sub.currentPeriodEnd ? daysUntil(sub.currentPeriodEnd) : null;
   return (
     <>
       <PageHeader title="Subscription" description="Upgrade or downgrade any time. Limits apply instantly." />

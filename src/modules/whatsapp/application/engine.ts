@@ -5,7 +5,7 @@ import { AppError } from "@/shared/lib/http";
 import { logger } from "@/shared/lib/logger";
 import { publish } from "@/modules/api/application/events";
 import { handleIncoming } from "@/modules/messages/application/incoming.service";
-import { markDelivered } from "@/modules/messages/application/message.service";
+import { markDelivered, normalizeRecipient } from "@/modules/messages/application/message.service";
 import { getDriver, isSimulated } from "@/modules/whatsapp/infrastructure/driver-factory";
 import type { DriverCallbacks } from "@/modules/whatsapp/domain/driver";
 
@@ -81,14 +81,18 @@ export async function simulateScan(tenantId: string, id: string, phone: string):
   await findDevice(tenantId, id);
   const driver = getDriver();
   if (!isSimulated(driver)) throw new AppError("Only available with the simulated driver", 400, "not_supported");
-  if (!driver.simulateScan(id, phone)) throw new AppError("Start a connection first to get a QR code", 409, "not_connecting");
+  const normalizedPhone = normalizeRecipient(phone);
+  if (normalizedPhone.includes("@")) throw new AppError("A simulated device needs a phone number", 422, "invalid_phone");
+  if (!driver.simulateScan(id, normalizedPhone)) throw new AppError("Start a connection first to get a QR code", 409, "not_connecting");
 }
 
 export async function simulateIncoming(tenantId: string, id: string, from: string, text: string, pushName?: string): Promise<void> {
   await findDevice(tenantId, id);
   const driver = getDriver();
   if (!isSimulated(driver)) throw new AppError("Only available with the simulated driver", 400, "not_supported");
-  if (!driver.simulateIncoming(id, { from, text, pushName })) throw new AppError("Device is not connected", 409, "not_connected");
+  const normalizedFrom = normalizeRecipient(from);
+  if (normalizedFrom.includes("@")) throw new AppError("A simulated message needs a phone number", 422, "invalid_phone");
+  if (!driver.simulateIncoming(id, { from: normalizedFrom, text, pushName })) throw new AppError("Device is not connected", 409, "not_connected");
 }
 
 /** On boot: bring back every session that was active before the process stopped. */

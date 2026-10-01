@@ -23,7 +23,7 @@ export async function getSystemHealth() {
   const mem = process.memoryUsage();
   return {
     database: { ok: dbOk, latencyMs: dbLatencyMs },
-    worker: { running: worker.started, lastTickAgoMs: worker.lastTick ? Date.now() - worker.lastTick : null, ticks: worker.ticks, processed: worker.processed },
+    worker: { ready: worker.ready, running: worker.started, lastTickAgoMs: worker.lastTick ? Date.now() - worker.lastTick : null, ticks: worker.ticks, processed: worker.processed },
     queueDepth: depth,
     connectedDevices: connected,
     driver: getDriver().name,

@@ -14,7 +14,7 @@ const uptime = (s: number) => `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) 
 export default async function AdminSystemPage() {
   await requirePagePermission("system.manage", "/dashboard");
   const h = await getSystemHealth();
-  const workerOk = h.worker.running && h.worker.lastTickAgoMs !== null && h.worker.lastTickAgoMs < 10_000;
+  const workerOk = h.worker.ready && h.worker.lastTickAgoMs !== null && h.worker.lastTickAgoMs < 10_000;
   return (
     <>
       <PageHeader title="System health" description="Live status of the WAME runtime." />

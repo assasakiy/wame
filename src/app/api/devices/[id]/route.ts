@@ -10,8 +10,8 @@ const actionSchema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("connect") }),
   z.object({ action: z.literal("disconnect") }),
   z.object({ action: z.literal("logout") }),
-  z.object({ action: z.literal("simulate_scan"), phone: z.string().min(8).max(20) }),
-  z.object({ action: z.literal("simulate_incoming"), from: z.string().min(8).max(20), text: z.string().min(1).max(1000), name: z.string().max(60).optional() }),
+  z.object({ action: z.literal("simulate_scan"), phone: z.string().min(8).max(20).regex(/^\+?[\d\s().-]+$/, "Enter a valid phone number") }),
+  z.object({ action: z.literal("simulate_incoming"), from: z.string().min(8).max(20).regex(/^\+?[\d\s().-]+$/, "Enter a valid phone number"), text: z.string().min(1).max(1000), name: z.string().max(60).optional() }),
 ]);
 
 export const GET = route(async (_req, ctx) => {
@@ -42,10 +42,10 @@ export const POST = route(async (req, ctx) => {
       await disconnectDevice(user.tenantId, id, true);
       break;
     case "simulate_scan":
-      await simulateScan(user.tenantId, id, input.phone.replace(/\D/g, ""));
+      await simulateScan(user.tenantId, id, input.phone);
       break;
     case "simulate_incoming":
-      await simulateIncoming(user.tenantId, id, input.from.replace(/\D/g, ""), input.text, input.name);
+      await simulateIncoming(user.tenantId, id, input.from, input.text, input.name);
       break;
   }
   return { ok: true };
