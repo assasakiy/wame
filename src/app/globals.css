@@ -1,1 +1,110 @@
 @import "tailwindcss";
+
+:root {
+  --wame-ink: #10231d;
+  --wame-mint: #c7f36b;
+  --wame-paper: #f4f6ee;
+  --wame-line: rgba(16, 35, 29, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--wame-mint);
+  color: var(--wame-ink);
+}
+
+.marketing-grid {
+  background-image: linear-gradient(rgba(199, 243, 107, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(199, 243, 107, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 84%);
+}
+
+.marketing-paper-grid {
+  background-image: linear-gradient(rgba(16, 35, 29, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 35, 29, 0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.marketing-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+@keyframes wame-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  50% { transform: translate3d(0, -10px, 0) rotate(0deg); }
+}
+
+@keyframes wame-float-reverse {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(2deg); }
+  50% { transform: translate3d(0, 10px, 0) rotate(0deg); }
+}
+
+@keyframes wame-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(199, 243, 107, 0.32); }
+  50% { box-shadow: 0 0 0 7px rgba(199, 243, 107, 0); }
+}
+
+@keyframes wame-scan {
+  0% { transform: translateY(-14px); opacity: 0; }
+  15%, 75% { opacity: 1; }
+  100% { transform: translateY(168px); opacity: 0; }
+}
+
+@keyframes wame-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes wame-blink {
+  0%, 45%, 100% { opacity: 1; }
+  50%, 90% { opacity: 0.4; }
+}
+
+.marketing-float {
+  animation: wame-float 6s ease-in-out infinite;
+}
+
+.marketing-float-reverse {
+  animation: wame-float-reverse 7s ease-in-out infinite;
+}
+
+.marketing-pulse {
+  animation: wame-pulse 2.4s ease-out infinite;
+}
+
+.marketing-scan {
+  animation: wame-scan 3.4s ease-in-out infinite;
+}
+
+.marketing-marquee {
+  animation: wame-marquee 28s linear infinite;
+}
+
+.marketing-blink {
+  animation: wame-blink 2.8s ease-in-out infinite;
+}
+
+.marketing-card-lift {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.marketing-card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px rgba(16, 35, 29, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marketing-float,
+  .marketing-float-reverse,
+  .marketing-pulse,
+  .marketing-scan,
+  .marketing-marquee,
+  .marketing-blink { animation: none; }
+  .marketing-card-lift { transition: none; }
+}
