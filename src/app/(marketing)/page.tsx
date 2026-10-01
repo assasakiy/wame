@@ -1,60 +1,70 @@
-import { ArrowRight, Check, CheckCheck, Code2, MessageCircle, MoreHorizontal, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, CheckCheck } from "lucide-react";
 import { ButtonLink } from "@/shared/components/ButtonLink";
 import { FeatureGrid } from "@/features/marketing/components/FeatureGrid";
 import { PricingCards } from "@/features/marketing/components/PricingCards";
 import { STEPS } from "@/features/marketing/content";
 
-function InboxPreview() {
+function ChatMockup() {
   return (
-    <div className="relative mx-auto w-full max-w-[570px]">
-      <div className="marketing-float-reverse absolute -right-3 -top-5 z-10 hidden items-center gap-2 rounded-full border border-[#10231d]/10 bg-white px-3 py-2 text-[11px] font-semibold text-[#365447] shadow-lg shadow-[#10231d]/10 sm:flex"><span className="marketing-pulse h-2 w-2 rounded-full bg-[#67a956]" /> 3 devices connected</div>
-      <div className="relative rounded-[1.4rem] border border-[#10231d]/15 bg-[#10231d] p-2 shadow-[0_28px_70px_rgba(16,35,29,.18)] sm:p-3">
-        <div className="overflow-hidden rounded-[0.95rem] bg-[#f7f8f1]">
-          <div className="flex items-center justify-between border-b border-[#10231d]/10 bg-white px-4 py-3"><div className="flex items-center gap-2.5"><span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10231d] text-[#c7f36b]"><MessageCircle size={14} fill="currentColor" /></span><span className="text-[11px] font-bold tracking-[0.14em] text-[#10231d]">WAME / INBOX</span></div><div className="flex items-center gap-2 text-[10px] font-medium text-[#718279]"><span className="h-1.5 w-1.5 rounded-full bg-[#67a956]" /> LIVE <MoreHorizontal size={15} /></div></div>
-          <div className="grid min-h-[390px] sm:grid-cols-[170px_1fr]">
-            <aside className="hidden border-r border-[#10231d]/10 bg-[#eef2e7] p-3 sm:block"><div className="mb-4 flex items-center justify-between px-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#789086]"><span>Inbox</span><span className="rounded-full bg-[#dce8d2] px-1.5 py-0.5 text-[#416052]">12</span></div><div className="space-y-1.5">{[["Budi Santoso", "Paket Pro?", "now"], ["Sari · new lead", "Minta katalog", "2m"], ["Raka Wijaya", "Terima kasih!", "8m"], ["Nadia Store", "Pesanan #2418", "13m"]].map(([name, message, time], index) => <div key={name} className={`rounded-xl p-2.5 ${index === 0 ? "bg-white shadow-sm" : ""}`}><div className="flex items-center justify-between gap-2"><span className="truncate text-[10px] font-semibold text-[#20382e]">{name}</span><span className="text-[9px] text-[#91a39b]">{time}</span></div><p className="mt-1 truncate text-[10px] text-[#759087]">{message}</p></div>)}</div></aside>
-            <div className="flex flex-col bg-white"><div className="flex items-center justify-between border-b border-[#10231d]/10 px-4 py-3"><div className="flex items-center gap-2.5"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#dff3bd] text-[11px] font-bold text-[#315438]">BS</span><div><p className="text-xs font-semibold text-[#20382e]">Budi Santoso</p><p className="mt-0.5 text-[10px] text-[#789086]">WhatsApp · 2m ago</p></div></div><span className="rounded-full bg-[#eef7e3] px-2 py-1 text-[9px] font-semibold text-[#5d8051]">VIP lead</span></div><div className="relative flex-1 space-y-3 bg-[radial-gradient(circle_at_50%_0%,#f6f9f0,white_62%)] px-4 py-5 sm:px-6"><span className="marketing-scan absolute left-0 top-0 h-px w-full bg-[#c7f36b] shadow-[0_0_12px_#c7f36b]" /><p className="w-fit max-w-[78%] rounded-2xl rounded-tl-sm bg-[#edf1ea] px-3.5 py-2.5 text-[11px] leading-5 text-[#365046]">Halo, berapa harga paket Pro?</p><div className="ml-auto w-fit max-w-[84%] rounded-2xl rounded-tr-sm bg-[#10231d] px-3.5 py-2.5 text-[11px] leading-5 text-white shadow-lg shadow-[#10231d]/10">Hi Budi! Paket Pro Rp149.000/bulan — 5 device, API & broadcast. 🚀<div className="mt-1.5 flex items-center justify-end gap-1 text-[9px] text-[#c7f36b]"><CheckCheck size={12} /> delivered</div></div><div className="flex items-center gap-2 py-2 text-[9px] uppercase tracking-[0.14em] text-[#9aac9f]"><span className="h-px flex-1 bg-[#10231d]/10" /> automation <span className="h-px flex-1 bg-[#10231d]/10" /></div><p className="w-fit max-w-[78%] rounded-2xl rounded-tl-sm border border-[#dce9d5] bg-[#f6faef] px-3.5 py-2.5 text-[11px] leading-5 text-[#365046]">Knowledge base matched · reply sent</p></div><div className="flex items-center gap-2 border-t border-[#10231d]/10 px-4 py-3"><div className="h-8 flex-1 rounded-lg bg-[#f2f5ee] px-3 py-2 text-[10px] text-[#9aac9f]">Type a message…</div><span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c7f36b] text-[#10231d]"><ArrowRight size={14} /></span></div></div>
-          </div>
-        </div>
+    <div className="mx-auto w-full max-w-sm rounded-3xl border border-slate-700 bg-slate-900 p-4 shadow-2xl">
+      <div className="flex items-center gap-3 border-b border-slate-700 pb-3">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 font-bold text-white">W</span>
+        <div><p className="text-sm font-medium text-white">Customer Support</p><p className="text-xs text-emerald-400">● connected · healthy</p></div>
+      </div>
+      <div className="space-y-3 py-4 text-sm">
+        <p className="max-w-[80%] rounded-2xl rounded-tl-sm bg-slate-800 px-3 py-2 text-slate-100">Halo, berapa harga paket Pro?</p>
+        <p className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-emerald-600 px-3 py-2 text-white">Hi Budi! Paket Pro Rp149.000/bulan — 5 device, API & broadcast. 🚀</p>
+        <p className="text-center text-[11px] text-slate-500">⚡ auto-reply · AI knowledge base</p>
+        <p className="flex items-center justify-end gap-1 text-[11px] text-slate-400"><CheckCheck size={14} className="text-sky-400" /> delivered · 0.8s</p>
       </div>
     </div>
   );
 }
 
-function IntegrationPanel() {
-  return (
-    <div className="rounded-2xl bg-[#10231d] p-5 text-white sm:p-6"><div className="flex items-center justify-between"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#c7f36b] text-[#10231d]"><Code2 size={17} /></span><span className="font-mono text-[10px] text-slate-500">API / 01</span></div><h3 className="mt-6 text-xl font-semibold tracking-tight">Connect it to the tools you already use.</h3><p className="mt-3 text-sm leading-6 text-slate-400">A small, predictable API for sending messages and listening to events.</p><div className="mt-6 rounded-xl border border-white/10 bg-black/15 p-4 font-mono text-[10px] leading-6"><p><span className="text-[#c7f36b]">POST</span> <span className="text-slate-200">/api/v1/messages/send</span></p><p className="mt-2 text-slate-500">&#123; <span className="text-[#8fd6cb]">&quot;to&quot;</span>: <span className="text-[#e3be83]">&quot;62812…&quot;</span>,</p><p className="pl-5 text-slate-500"><span className="text-[#8fd6cb]">&quot;text&quot;</span>: <span className="text-[#e3be83]">&quot;Hello from WAME&quot;</span> &#125;</p><p className="mt-3 border-t border-white/10 pt-3 text-[#c7f36b]">202 · queued</p></div></div>
-  );
-}
-
-function WorkflowPanel() {
-  return (
-    <div className="rounded-2xl border border-[#10231d]/10 bg-[#e7f3d6] p-5 sm:p-6"><div className="flex items-center justify-between"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#c7f36b] text-[#10231d]"><Workflow size={17} /></span><span className="font-mono text-[10px] text-[#71886e]">AUTOMATION / 02</span></div><h3 className="mt-6 text-xl font-semibold tracking-tight text-[#10231d]">Let the repeatable repeat itself.</h3><p className="mt-3 text-sm leading-6 text-[#58705f]">Trigger, condition, action. A clear path from a customer message to a useful response.</p><div className="mt-6 space-y-2">{["Customer says  ·  harga", "Then check  ·  interested", "Then send  ·  pricing reply"].map((step, index) => <div key={step} className="flex items-center gap-2.5"><span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#8fb57c] text-[10px] font-semibold text-[#4c7e45]">{index + 1}</span><div className={`flex-1 rounded-lg px-3 py-2.5 text-[10px] font-medium ${index === 2 ? "bg-[#10231d] text-white" : "bg-white/80 text-[#355542]"}`}>{step}</div></div>)}</div></div>
-  );
-}
-
 export default function HomePage() {
   return (
-    <div className="overflow-hidden bg-[#f7f8f1] text-[#10231d]">
-      <section className="relative border-b border-[#10231d]/10 bg-[#f7f8f1] px-5 sm:px-8 lg:px-10">
-        <div className="marketing-paper-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 py-16 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:py-28">
-          <div><p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5b8451]">WhatsApp infrastructure / 01</p><h1 className="mt-6 max-w-xl text-[clamp(3.4rem,7vw,6.7rem)] font-semibold leading-[0.9] tracking-[-0.075em]">Make every conversation <span className="font-serif font-normal italic text-[#6a9a59]">move.</span></h1><p className="mt-7 max-w-lg text-base leading-7 text-[#607269] sm:text-lg">WAME gives your team one reliable place for WhatsApp devices, automation, API and AI — without turning the inbox into another system to babysit.</p><div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center"><ButtonLink href="/register" size="lg" className="!h-13 !rounded-full !bg-[#10231d] !px-6 !font-semibold !text-white hover:!bg-[#24483a]">Start free <ArrowRight size={17} /></ButtonLink><a href="#system" className="text-sm font-medium text-[#5b7165] underline decoration-[#a9c89a] decoration-2 underline-offset-4 transition-colors hover:text-[#10231d]">See how it works</a></div><div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#819189]"><span>API-first</span><span>Realtime</span><span>Multi-device</span></div></div>
-          <div className="relative lg:pt-6"><InboxPreview /></div>
+    <>
+      <section className="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+          <div>
+            <span className="rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">WhatsApp Gateway SaaS</span>
+            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Run WhatsApp like a platform, not a phone.</h1>
+            <p className="mt-5 max-w-xl text-lg text-slate-300">WAME connects multiple WhatsApp numbers to one dashboard, one API and a team of AI agents — with automation, broadcast and realtime monitoring built in.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href="/register" size="lg">Start free <ArrowRight size={18} /></ButtonLink>
+              <ButtonLink href="/docs" size="lg" variant="secondary" className="border-slate-600 bg-transparent text-white hover:bg-slate-800">Read the docs</ButtonLink>
+            </div>
+          </div>
+          <ChatMockup />
         </div>
       </section>
 
-      <section className="border-b border-[#10231d]/10 bg-white px-5 py-5 sm:px-8 lg:px-10"><div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-x-8 gap-y-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8a9a90]"><span className="text-[#5b8451]">One workspace for the whole conversation</span><span>Link</span><span>Route</span><span>Automate</span><span>Measure</span><span>Scale</span></div></section>
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="text-center text-3xl font-bold tracking-tight">Everything you need to scale conversations</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">From a single number to a fleet of devices, with the controls a growing business expects.</p>
+        <div className="mt-10"><FeatureGrid /></div>
+      </section>
 
-      <section id="system" className="bg-[#f7f8f1] px-5 py-20 sm:px-8 sm:py-28 lg:px-10"><div className="mx-auto max-w-[1200px]"><div className="grid gap-7 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"><div><p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5b8451]">02 / The system</p><h2 className="mt-5 max-w-lg text-4xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-6xl">A calmer way to run the inbox.</h2></div><p className="max-w-xl text-base leading-7 text-[#607269] lg:justify-self-end lg:text-lg">The product should absorb the operational noise, so your team can spend its attention on the conversation itself.</p></div><div className="mt-12 grid gap-4 lg:grid-cols-2"><IntegrationPanel /><WorkflowPanel /><div className="rounded-2xl border border-[#10231d]/10 bg-white p-5 sm:p-6"><div className="flex items-center justify-between"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f9e8c9] text-[#a76d2e]"><Sparkles size={17} /></span><span className="font-mono text-[10px] text-[#a59a83]">AI / 03</span></div><h3 className="mt-6 text-xl font-semibold tracking-tight">Context before cleverness.</h3><p className="mt-3 max-w-md text-sm leading-6 text-[#6d786e]">Agents can search your knowledge base, follow the thread and hand off when a human should take over.</p><div className="mt-6 flex items-center gap-3 rounded-xl bg-[#fff8e9] p-3"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#10231d] text-[#c7f36b]"><MessageCircle size={14} /></span><div><p className="text-[11px] font-semibold text-[#40533f]">Customer service agent</p><p className="mt-0.5 text-[10px] text-[#9a927c]">Knowledge base connected</p></div><Check size={15} className="ml-auto text-[#67a150]" /></div></div><div className="rounded-2xl border border-[#10231d]/10 bg-[#dfeeda] p-5 sm:p-6"><div className="flex items-center justify-between"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#c7f36b] text-[#10231d]"><CheckCheck size={17} /></span><span className="font-mono text-[10px] text-[#6d9160]">OPS / 04</span></div><h3 className="mt-6 text-xl font-semibold tracking-tight">Know what happened.</h3><p className="mt-3 text-sm leading-6 text-[#58705f]">Delivery events, device health and audit trails are visible without digging through logs.</p><div className="mt-6 space-y-2 font-mono text-[10px] text-[#58705f]"><p><span className="text-[#67a150]">●</span> message.delivered <span className="float-right text-[#88a08d]">0.8s</span></p><p><span className="text-[#67a150]">●</span> device.connected <span className="float-right text-[#88a08d]">now</span></p><p><span className="text-[#67a150]">●</span> automation.executed <span className="float-right text-[#88a08d]">2m</span></p></div></div></div></div></section>
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <h2 className="text-center text-3xl font-bold tracking-tight">Live in three steps</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {STEPS.map((s, i) => (
+              <div key={s.title} className="rounded-2xl bg-slate-50 p-6">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white">{i + 1}</span>
+                <h3 className="mt-4 font-semibold">{s.title}</h3>
+                <p className="mt-1 text-sm text-slate-600">{s.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-10"><div className="mx-auto max-w-[1200px]"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5b8451]">03 / Included</p><h2 className="mt-5 max-w-2xl text-4xl font-semibold leading-none tracking-[-0.06em] sm:text-6xl">The details that make it dependable.</h2></div><p className="max-w-xs text-sm leading-6 text-[#718279] sm:text-right">Useful defaults. Clear limits. No mystery machinery.</p></div><div className="mt-12"><FeatureGrid /></div></div></section>
-
-      <section className="bg-[#10231d] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-10"><div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"><div><p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#c7f36b]">04 / Start small</p><h2 className="mt-5 max-w-md text-4xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-6xl">One device. One rule. A better first reply.</h2><p className="mt-6 max-w-md text-base leading-7 text-slate-400">Link a number in minutes, add your first automation and let the workspace grow around what actually works.</p></div><div className="space-y-0">{STEPS.map((step, index) => <div key={step.title} className="relative flex gap-5 border-b border-white/10 py-6 first:pt-0 last:border-0 last:pb-0"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#c7f36b]/50 text-[11px] font-semibold text-[#c7f36b]">0{index + 1}</span><div><h3 className="text-lg font-medium">{step.title}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{step.description}</p></div></div>)}</div></div></section>
-
-      <section className="bg-[#f7f8f1] px-5 py-20 sm:px-8 sm:py-28 lg:px-10"><div className="mx-auto max-w-[1200px]"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5b8451]">05 / Pricing</p><h2 className="mt-5 text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">Pay for the stage you&apos;re in.</h2></div><p className="max-w-xs text-sm leading-6 text-[#718279] sm:text-right">Start free. Upgrade when your conversations do.</p></div><div className="mt-12"><PricingCards /></div></div></section>
-
-      <section className="bg-[#c7f36b] px-5 py-16 sm:px-8 sm:py-20 lg:px-10"><div className="mx-auto flex max-w-[1200px] flex-col gap-7 sm:flex-row sm:items-center sm:justify-between"><div><p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#527642]">06 / Your move</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-none tracking-[-0.065em] sm:text-6xl">Make the inbox useful.</h2></div><ButtonLink href="/register" size="lg" variant="dark" className="!h-13 !w-fit !rounded-full !bg-[#10231d] !px-6 !font-semibold hover:!bg-[#24483a]">Create workspace <ArrowRight size={17} /></ButtonLink></div></section>
-    </div>
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="text-center text-3xl font-bold tracking-tight">Simple, scalable pricing</h2>
+        <p className="mt-3 text-center text-slate-600">Start free. Upgrade when you grow.</p>
+        <div className="mt-12"><PricingCards /></div>
+      </section>
+    </>
   );
 }
